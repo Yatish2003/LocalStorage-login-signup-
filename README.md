@@ -1,0 +1,1 @@
+# This repo will help you to store some data in your local storage.

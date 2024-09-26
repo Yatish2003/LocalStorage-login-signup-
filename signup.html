@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+       
+        .form{
+            background-color: red;
+            width: 300px;
+            height: 300px;
+            text-align: center;
+        }
+        .content{
+            margin-top: 50px;
+        }
+        input{
+            border-radius: 5px;
+            /* border: none; */
+            height: 25px;
+            outline: none;
+
+        }
+        #signup{
+            width: 100px;
+            border-radius: 5px;
+            outline: none;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="">
+
+        <div class="form">
+            <h1>SignUp</h1>
+            <div class="content">
+                <input type="email" placeholder='email' id="email" ><br><br>
+                <input type="password" placeholder='password' id="pass" ><br><br>
+
+                <button id="signup">sign-up</button>
+            </div>
+        </div>
+
+    </form>
+    <script>
+
+        document.getElementById('signup').addEventListener('click', (val) => {
+            val.preventDefault();
+            let email = document.getElementById('email').value;
+            let pass = document.getElementById('pass').value;
+            if(email){
+                if(pass){
+                console.log(pass);
+                let loaclStoreData = localStorage.getItem("userData");
+                let parseData=JSON.parse(loaclStoreData);
+    
+    
+                let outPut=parseData.filter((Credintials)=>{
+                    if(Credintials.userEmail==email && Credintials.userPwd){
+                        window.location.href="./index.html"
+                        
+                        return Credintials
+                    }
+                })
+                if(outPut.length==0){
+                    alert("Invalid Credintials")
+                }
+            }else{
+                alert("password field is empty");
+
+            }
+            }else{
+                alert("email field is empty")
+            }
+            
+        
+
+
+
+        })
+
+    </script>
+</body>
+
+</html>

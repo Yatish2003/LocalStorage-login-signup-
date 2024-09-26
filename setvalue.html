@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .form {
+            width: 300px;
+            height: 300px;
+            background-color: bisque;
+            text-align: center;
+        }
+
+        input {
+            /* border: none; */
+            outline: none;
+            border-radius: 5px;
+            height: 25px;
+        }
+
+        #btn {
+            width: 100px;
+            border-radius: 5px;
+            outline: none;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="">
+        <div class="form">
+            <h1>Register</h1>
+            <div class="content">
+                <input type="text" placeholder="Username" id="username"><br><br>
+                <input type="email" placeholder="email" id="email"><br><br>
+                <input type="password" placeholder="password" id="pwd"><br><br>
+                <input type="password" placeholder="Confirm pasword" id="Cpwd"><br><br>
+                <button id="btn">Register</button>
+            </div>
+        </div>
+    </form>
+    <script>
+        document.getElementById('btn').addEventListener('click', (val) => {
+            val.preventDefault();
+            let username = document.getElementById('username').value;
+            let userEmail = document.getElementById('email').value;
+            let userPwd = document.getElementById('pwd').value;
+            let userCpwd = document.getElementById('Cpwd').value;
+
+            if (userPwd == userCpwd) {
+                // INput Data
+                let userData = { username, userEmail, userPwd, userCpwd };
+
+
+                //localStore data
+                let localData = localStorage.getItem("userData");
+                let parseLocal;
+                //check if local data is empty or not
+                if (localData) {
+                    parseLocal = JSON.parse(localData);
+                } else {
+                    parseLocal = [];
+                }
+
+                // merging  both  data
+                let storingData = ([userData, ...parseLocal]);
+                let convStrData = JSON.stringify(storingData)
+
+
+                //set data
+                localStorage.setItem("userData", convStrData);
+
+            } else {
+                alert("password doesn't match");
+
+            }
+
+        })
+    </script>
+</body>
+
+</html>
